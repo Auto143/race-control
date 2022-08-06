@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RCLogic.DataAccess.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace RCLogic.DataAccess.Context
 {
     internal class RCSQLiteContext : DbContext
     {
-        private string _dbPath;
+        internal DbSet<Continent> Continents => Set<Continent>();
+
+        private string _dbPath; 
 
         internal RCSQLiteContext(string dbName, string appDBFolderStucture)
         {
@@ -26,6 +29,16 @@ namespace RCLogic.DataAccess.Context
             _dbPath = Path.Join(dbFolderPath, String.Format("{0}.db", dbName));
 
             this.Database.Migrate();
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            configureContinentsTable(modelBuilder);
+        }
+
+        private void configureContinentsTable(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Continent>().HasKey(c => c.ContinentCode);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
