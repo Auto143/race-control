@@ -12,6 +12,7 @@ namespace RCLogic.DataAccess.Context
     {
         internal DbSet<Continent> Continents => Set<Continent>();
         internal DbSet<Country> Countries => Set<Country>();
+        internal DbSet<Track> Tracks => Set<Track>();
 
         private string _dbPath; 
 
@@ -31,12 +32,16 @@ namespace RCLogic.DataAccess.Context
 
             this.Database.Migrate();
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlite($"Data Source={_dbPath}");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             configureContinentsTable(modelBuilder);
 
             configureContriesTable(modelBuilder);
+
+            configureTracksTable(modelBuilder);
         }
 
         private void configureContinentsTable(ModelBuilder modelBuilder)
@@ -54,7 +59,14 @@ namespace RCLogic.DataAccess.Context
                 .HasForeignKey(c => c.ContinentCode);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite($"Data Source={_dbPath}");
+        private void configureTracksTable(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Track>().HasKey(t => t.TrackName);
+
+            modelBuilder.Entity<Track>()
+                .HasOne(c => c.Country)
+                .WithMany()
+                .HasForeignKey(c => c.CountryCode);
+        }
     }
 }
