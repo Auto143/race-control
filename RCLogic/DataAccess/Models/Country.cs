@@ -13,7 +13,6 @@ namespace RCLogic.DataAccess.Models
         public string Name { get; set; } = String.Empty;
 
         public string ContinentCode { get; set; } = String.Empty;
-
         public Continent? Continant { get; set; }
     }
 }

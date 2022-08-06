@@ -13,7 +13,6 @@ namespace RCLogic.DataAccess.Models
         public double Length { get; set; }
 
         public string CountryCode { get; set; } = String.Empty;
-
         public Country? Country { get; set; }
     }
 }
