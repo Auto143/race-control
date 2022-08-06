@@ -11,6 +11,7 @@ namespace RCLogic.DataAccess.Context
     internal class RCSQLiteContext : DbContext
     {
         internal DbSet<Continent> Continents => Set<Continent>();
+        internal DbSet<Country> Countries => Set<Country>();
 
         private string _dbPath; 
 
@@ -34,11 +35,23 @@ namespace RCLogic.DataAccess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             configureContinentsTable(modelBuilder);
+
+            configureContriesTable(modelBuilder);
         }
 
         private void configureContinentsTable(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Continent>().HasKey(c => c.ContinentCode);
+        }
+
+        private void configureContriesTable(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Country>().HasKey(c => c.CountryCode);
+
+            modelBuilder.Entity<Country>()
+                .HasOne(c => c.Continant)
+                .WithMany()
+                .HasForeignKey(c => c.ContinentCode);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
