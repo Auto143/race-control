@@ -12,6 +12,7 @@ namespace RCLogic.DataAccess.Context
     {
         internal DbSet<Continent> Continents => Set<Continent>();
         internal DbSet<Country> Countries => Set<Country>();
+        internal DbSet<Meet> Meets => Set<Meet>();
         internal DbSet<Series> Series => Set<Series>();
         internal DbSet<Track> Tracks => Set<Track>();
 
@@ -42,6 +43,8 @@ namespace RCLogic.DataAccess.Context
 
             configureContriesTable(modelBuilder);
 
+            configureMeetsTable(modelBuilder);
+
             configureSeriesTable(modelBuilder);
 
             configureTracksTable(modelBuilder);
@@ -60,6 +63,21 @@ namespace RCLogic.DataAccess.Context
                 .HasOne(c => c.Continant)
                 .WithMany()
                 .HasForeignKey(c => c.ContinentCode);
+        }
+
+        private void configureMeetsTable(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Meet>().HasKey(m => m.MeetID);
+
+            modelBuilder.Entity<Meet>()
+                .HasOne(m => m.Track)
+                .WithMany()
+                .HasForeignKey(m => m.TrackName);
+            
+            modelBuilder.Entity<Meet>()
+                .HasOne(m => m.Series)
+                .WithMany()
+                .HasForeignKey(m => m.SeriesName);
         }
 
         private void configureSeriesTable(ModelBuilder modelBuilder)
