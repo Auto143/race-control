@@ -7,25 +7,25 @@ using System.Threading.Tasks;
 
 namespace RCLogic.DataAccess.Context
 {
-    internal class RCDBContext : DbContext
+    internal class RCSQLiteContext : DbContext
     {
-        private const string _appDBFolderStructure = "/RaceControl/Database/";
-        private const string _dbName = "racecontrol";
         private string _dbPath;
 
-        internal RCDBContext()
+        internal RCSQLiteContext(string dbName, string appDBFolderStucture)
         {
             Environment.SpecialFolder appDataFolder = Environment.SpecialFolder.LocalApplicationData;
             string appDataFolderPath = Environment.GetFolderPath(appDataFolder);
 
-            string dbFolderPath = Path.Join(appDataFolderPath, _appDBFolderStructure);
+            string dbFolderPath = Path.Join(appDataFolderPath, appDBFolderStucture);
 
             if (!Directory.Exists(dbFolderPath))
             {
                 Directory.CreateDirectory(dbFolderPath);
             }
 
-            _dbPath = Path.Join(dbFolderPath, _dbName);
+            _dbPath = Path.Join(dbFolderPath, String.Format("{0}.db", dbName));
+
+            this.Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
