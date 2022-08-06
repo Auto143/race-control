@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace RCLogic.DataAccess.Services.Interfaces
 {
-    public interface IDatabaseService
+    public interface IDataService
     {
-        public DbContext DBContext { get; }
+        public void DeleteSource();
 
         public void Dispose();
     }

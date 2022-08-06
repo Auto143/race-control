@@ -16,7 +16,7 @@ namespace RCLogicIntegrationTests.ServiceTests
         [Test]
         public void OnInitialization_CreateFileDatabase_IfDoesntExist()
         {
-            IDatabaseService? databaseService = null;
+            IDataService? databaseService = null;
 
             try
             {
@@ -26,7 +26,7 @@ namespace RCLogicIntegrationTests.ServiceTests
                 string testFolderStructure = Path.Join(TEST_FOLDER, TEST_DB_FOLDER);
 
                 // Act
-                databaseService = new SQLiteDatabaseService(TEST_DB_NAME, testFolderStructure);
+                databaseService = new SQLiteDataService(TEST_DB_NAME, testFolderStructure);
 
                 // Assert
                 bool doesDBFileExist = File.Exists(Path.Join(GetTestDBFolderPath(testFolderStructure), String.Format("{0}.db", TEST_DB_NAME)));
@@ -36,7 +36,7 @@ namespace RCLogicIntegrationTests.ServiceTests
             {
                 if (databaseService != null)
                 {
-                    databaseService.DBContext.Database.EnsureDeleted();
+                    databaseService.DeleteSource();
                     databaseService.Dispose();
                 }
             }
@@ -45,7 +45,7 @@ namespace RCLogicIntegrationTests.ServiceTests
         [Test]
         public async Task OnInitialization_DontRecreateFileDatabase_IfAlreadyExists()
         {
-            IDatabaseService? databaseService = null;
+            IDataService? databaseService = null;
 
             try
             {
@@ -57,15 +57,15 @@ namespace RCLogicIntegrationTests.ServiceTests
                 string testFolderStructure = Path.Join(TEST_FOLDER, TEST_DB_FOLDER);
                 string testDBFilePath = Path.Join(GetTestDBFolderPath(testFolderStructure), String.Format("{0}.db", TEST_DB_NAME));
 
-                databaseService = new SQLiteDatabaseService(TEST_DB_NAME, testFolderStructure);
-                databaseService.DBContext.Dispose();
+                databaseService = new SQLiteDataService(TEST_DB_NAME, testFolderStructure);
+                databaseService.Dispose();
                 databaseService = null;
 
                 // Act
                 DateTime beforeLastFileWriteTime = File.GetLastWriteTime(testDBFilePath);
                 await Task.Delay(WAIT_TIME_AVOID_FALSE_POSITIVE);
 
-                databaseService = new SQLiteDatabaseService(TEST_DB_NAME, testFolderStructure);
+                databaseService = new SQLiteDataService(TEST_DB_NAME, testFolderStructure);
                 DateTime afterLastFileWriteTime = File.GetLastWriteTime(testDBFilePath);
 
                 // Assert
@@ -75,7 +75,7 @@ namespace RCLogicIntegrationTests.ServiceTests
             {
                 if (databaseService != null)
                 {
-                    databaseService.DBContext.Database.EnsureDeleted();
+                    databaseService.DeleteSource();
                     databaseService.Dispose();
                 }
             }
