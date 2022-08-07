@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RCLogic\RCLogic.csproj" />
+    <ProjectReference Include="..\RCDataAccess\RCDataAccess.csproj" />
   </ItemGroup>
 
 </Project>

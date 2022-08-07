@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl", "RaceControl\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCLogic", "RCLogic\RCLogic.csproj", "{C7138DEB-4E98-4697-9E31-5E452DD94827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCLogicUnitTests", "RCLogicUnitTests\RCLogicUnitTests.csproj", "{A7669F4C-C5AC-42D6-8CD5-590875241F83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCLogicUnitTests", "RCLogicUnitTests\RCLogicUnitTests.csproj", "{A7669F4C-C5AC-42D6-8CD5-590875241F83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCLogicIntegrationTests", "RCLogicIntegrationTests\RCLogicIntegrationTests.csproj", "{49265684-EAF6-459C-A6CA-9054A8779FBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCDataAccess", "RCDataAccess\RCDataAccess.csproj", "{DA494470-5643-4898-9976-5D200AE094C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCDataAccessIntegrationTests", "RCDataAccessIntegrationTests\RCDataAccessIntegrationTests.csproj", "{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +31,14 @@ Global
 		{A7669F4C-C5AC-42D6-8CD5-590875241F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7669F4C-C5AC-42D6-8CD5-590875241F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7669F4C-C5AC-42D6-8CD5-590875241F83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49265684-EAF6-459C-A6CA-9054A8779FBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49265684-EAF6-459C-A6CA-9054A8779FBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49265684-EAF6-459C-A6CA-9054A8779FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49265684-EAF6-459C-A6CA-9054A8779FBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA494470-5643-4898-9976-5D200AE094C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA494470-5643-4898-9976-5D200AE094C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA494470-5643-4898-9976-5D200AE094C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA494470-5643-4898-9976-5D200AE094C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

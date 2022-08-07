@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RCLogic.DataAccess.Services.Interfaces
+namespace RCDataAccess.Services.Interfaces
 {
     public interface IDataService
     {

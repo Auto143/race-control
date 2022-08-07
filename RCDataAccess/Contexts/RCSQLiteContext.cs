@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RCLogic.DataAccess.Models;
+using RCDataAccess.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RCLogic.DataAccess.Context
+namespace RCDataAccess.Contexts
 {
     internal class RCSQLiteContext : DbContext
     {

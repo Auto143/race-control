@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RCLogic.DataAccess.Models
+namespace RCDataAccess.Models
 {
-    internal class Continent
+    public class Continent
     {
         public string ContinentCode { get; set; } = String.Empty;
 

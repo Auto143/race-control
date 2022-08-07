@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RCLogic.DataAccess.Models
+namespace RCDataAccess.Models
 {
-    internal class Series
+    public class Series
     {
         public string SeriesName { get; set; } = String.Empty;
         public string Description { get; set; } = String.Empty;

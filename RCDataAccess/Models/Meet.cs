@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RCLogic.DataAccess.Models
+namespace RCDataAccess.Models
 {
-    internal class Meet
+    public class Meet
     {
         public Guid MeetID { get; set; }
 

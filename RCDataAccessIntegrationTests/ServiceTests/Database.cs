@@ -1,12 +1,13 @@
-﻿using RCLogic.DataAccess.Services.Interfaces;
-using RCLogic.DataAccess.Services.Implementations;
+﻿using RCDataAccess.Services.Interfaces;
+using RCDataAccess.Services.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RCDataAccess.Services.Implementations.SQLite;
 
-namespace RCLogicIntegrationTests.ServiceTests
+namespace RCDataAccessTests.ServiceTests
 {
     [TestFixture]
     public class RCDBContext_DatabaseCreation
