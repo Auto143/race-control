@@ -19,7 +19,7 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             const string TEST_DB_NAME = "testdatabase";
 
             string testFolderStructure = String.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
-            string testFolderPath = Path.Join(GetTestDBFolderPath(testFolderStructure));
+            string testFolderPath = Path.Join(getTestDBFolderPath(testFolderStructure));
             string databaseFilePath = Path.Join(testFolderPath, String.Format("{0}.db", TEST_DB_NAME));
 
             SQLiteDataService ? databaseService = null;
@@ -52,7 +52,7 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             const int WAIT_TIME_BETWEEN_CHECKS = 1000;
 
             string testFolderStructure = String.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
-            string testFolderPath = Path.Join(GetTestDBFolderPath(testFolderStructure));
+            string testFolderPath = Path.Join(getTestDBFolderPath(testFolderStructure));
             string databaseFilePath = Path.Join(testFolderPath, String.Format("{0}.db", TEST_DB_NAME));
 
             SQLiteDataService? databaseService = null;
@@ -84,7 +84,7 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             }
         }
 
-        private string GetTestDBFolderPath(string folderStructure)
+        private string getTestDBFolderPath(string folderStructure)
         {
             Environment.SpecialFolder appDataFolder = Environment.SpecialFolder.LocalApplicationData;
             string appDataFolderPath = Environment.GetFolderPath(appDataFolder);
