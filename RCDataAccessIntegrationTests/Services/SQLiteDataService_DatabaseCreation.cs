@@ -22,7 +22,7 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             string testFolderPath = Path.Join(getTestDBFolderPath(testFolderStructure));
             string databaseFilePath = Path.Join(testFolderPath, String.Format("{0}.db", TEST_DB_NAME));
 
-            SQLiteDataService ? databaseService = null;
+            SQLiteDataService? databaseService = null;
 
             try
             {
