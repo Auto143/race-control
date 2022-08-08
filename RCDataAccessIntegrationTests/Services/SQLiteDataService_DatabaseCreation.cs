@@ -10,6 +10,7 @@ using RCDataAccess.Services.Implementations.SQLite;
 namespace RCDataAccessIntegrationTests.ServiceTests
 {
     [TestFixture]
+    [NonParallelizable]
     public class SQLiteDataService_DatabaseCreation
     {
         [Test]
