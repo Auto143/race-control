@@ -20,15 +20,15 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             const string TEST_DB_NAME = "testdatabase";
 
             string testFolderStructure = String.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
-            string testFolderPath = Path.Join(getTestDBFolderPath(testFolderStructure));
+            string testFolderPath = getTestDBFolderPath(testFolderStructure);
             string databaseFilePath = Path.Join(testFolderPath, String.Format("{0}.db", TEST_DB_NAME));
 
-            SQLiteDataService? databaseService = null;
+            SQLiteDataService? dataService = null;
 
             try
             {
                 // Act
-                databaseService = new SQLiteDataService(TEST_DB_NAME, testFolderStructure);
+                dataService = new SQLiteDataService(TEST_DB_NAME, testFolderStructure);
 
                 // Assert
                 bool doesDBFileExist = File.Exists(databaseFilePath);
@@ -36,12 +36,7 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             }
             finally
             {
-                if (databaseService != null)
-                {
-                    databaseService.DeleteSource();
-                    databaseService.Dispose();
-                    Directory.Delete(testFolderPath, true);
-                }
+                cleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -53,20 +48,20 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             const int WAIT_TIME_BETWEEN_CHECKS = 1000;
 
             string testFolderStructure = String.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
-            string testFolderPath = Path.Join(getTestDBFolderPath(testFolderStructure));
+            string testFolderPath = getTestDBFolderPath(testFolderStructure);
             string databaseFilePath = Path.Join(testFolderPath, String.Format("{0}.db", TEST_DB_NAME));
 
-            SQLiteDataService? databaseService = null;
+            SQLiteDataService? dataService = null;
 
-            databaseService = new SQLiteDataService(TEST_DB_NAME, testFolderStructure);
-            databaseService.Dispose();
-            databaseService = null;
+            dataService = new SQLiteDataService(TEST_DB_NAME, testFolderStructure);
+            dataService.Dispose();
+            dataService = null;
 
             try
             {
                 // Act
                 long beforeLastFileWriteTime = File.GetLastWriteTime(databaseFilePath).Ticks;
-                databaseService = new SQLiteDataService(TEST_DB_NAME, testFolderStructure);
+                dataService = new SQLiteDataService(TEST_DB_NAME, testFolderStructure);
 
                 Thread.Sleep(WAIT_TIME_BETWEEN_CHECKS);
                 long afterLastFileWriteTime = File.GetLastWriteTime(databaseFilePath).Ticks;
@@ -76,12 +71,17 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             }
             finally
             {
-                if (databaseService != null)
-                {
-                    databaseService.DeleteSource();
-                    databaseService.Dispose();
-                    Directory.Delete(testFolderPath, true);
-                }
+                cleanUpDataService(dataService, testFolderPath);
+            }
+        }
+
+        private void cleanUpDataService(IDataService? dataService, string testFolderPath)
+        {
+            if (dataService != null)
+            {
+                dataService.DeleteSource();
+                dataService.Dispose();
+                Directory.Delete(testFolderPath, true);
             }
         }
 
