@@ -10,11 +10,11 @@ namespace RCDataAccess.Contexts
 {
     internal class RCSQLiteContext : DbContext
     {
-        internal DbSet<Continent> Continents => Set<Continent>();
-        internal DbSet<Country> Countries => Set<Country>();
-        internal DbSet<Meet> Meets => Set<Meet>();
-        internal DbSet<Series> Series => Set<Series>();
-        internal DbSet<Track> Tracks => Set<Track>();
+        public DbSet<Continent> Continents => Set<Continent>();
+        public DbSet<Country> Countries => Set<Country>();
+        public DbSet<Meet> Meets => Set<Meet>();
+        public DbSet<Series> Series => Set<Series>();
+        public DbSet<Track> Tracks => Set<Track>();
 
         private string _dbPath; 
 
@@ -31,9 +31,8 @@ namespace RCDataAccess.Contexts
             }
 
             _dbPath = Path.Join(dbFolderPath, String.Format("{0}.db", dbName));
-
-            this.Database.Migrate();
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite($"Data Source={_dbPath}");
 
