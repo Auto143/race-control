@@ -11,11 +11,17 @@ namespace RCDataAccess.Services.Implementations.SQLite
 {
     public class SQLiteDataService : IDataService
     {
+        public IMeetService Meet { get; }
+
         internal RCSQLiteContext rcSQLiteContext { get; }
 
         public SQLiteDataService(string dbName, string appDBFolderStucture)
         {
             rcSQLiteContext = new RCSQLiteContext(dbName, appDBFolderStucture);
+
+            rcSQLiteContext.Database.EnsureCreated();
+
+            Meet = new SQLiteMeetService(rcSQLiteContext);
         }
 
         public void DeleteSource()
