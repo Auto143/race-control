@@ -12,9 +12,8 @@ namespace RCDataAccessIntegrationTests.Services
     [TestFixture]
     public class SQLiteDataService_MeetService
     {
-
         [Test]
-        public void WhenCalled_ThrowKeyNotFoundException_WhenNoMeetWithIDFound()
+        public void WhenGetCalled_ThrowKeyNotFoundException_WhenNoMeetWithIDFound()
         {
             // Arrange
             (IDataService dataService, string testFolderPath) = createDataService();
@@ -37,7 +36,7 @@ namespace RCDataAccessIntegrationTests.Services
         {
             const string TEST_DB_NAME = "testdatabase";
 
-            string testFolderStructure = String.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
+            string testFolderStructure = String.Format("RCDataAccessTests{0}", Guid.NewGuid());
             string testFolderPath = getTestDBFolderPath(testFolderStructure);
 
             return (new SQLiteDataService(TEST_DB_NAME, testFolderStructure), testFolderPath);
