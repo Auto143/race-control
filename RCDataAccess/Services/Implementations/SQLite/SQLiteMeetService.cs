@@ -33,7 +33,7 @@ namespace RCDataAccess.Services.Implementations.SQLite
             {
                 if (invalidOperationException.Message.ToLower().Equals("sequence contains no elements"))
                 {
-                    throw new KeyNotFoundException();
+                    throw new KeyNotFoundException(String.Format("No meet exists with key {0}"));
                 }
                 else
                 {
