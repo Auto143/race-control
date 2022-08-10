@@ -11,6 +11,8 @@ namespace RCDataAccess.Services.Interfaces
     {
         public IMeetService Meet { get; }
 
+        public ISeriesService Series { get; }
+
         public void DeleteSource();
 
         public void Dispose();
