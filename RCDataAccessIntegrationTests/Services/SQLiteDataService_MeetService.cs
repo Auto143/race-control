@@ -39,7 +39,7 @@ namespace RCDataAccessIntegrationTests.Services
             string testFolderStructure = String.Format("RCDataAccessTests{0}", Guid.NewGuid());
             string testFolderPath = getTestDBFolderPath(testFolderStructure);
 
-            return (new SQLiteDataService(TEST_DB_NAME, testFolderStructure), testFolderPath);
+            return (new DataService(TEST_DB_NAME, testFolderStructure), testFolderPath);
         }
 
         private void cleanUpDataService(IDataService dataService, string testFolderPath)
