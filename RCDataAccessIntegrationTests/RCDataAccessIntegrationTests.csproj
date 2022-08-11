@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RCDataAccess\RCDataAccess.csproj" />
+    <ProjectReference Include="..\RCDataAccess\RaceControl.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

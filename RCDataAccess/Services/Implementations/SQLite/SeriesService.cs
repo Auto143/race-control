@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RCDataAccess.Contexts;
-using RCDataAccess.Models;
-using RCDataAccess.Services.Interfaces;
+using RaceControl.DataAccess.Contexts;
+using RaceControl.DataAccess.Models;
+using RaceControl.DataAccess.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RCDataAccess.Services.Implementations.SQLite
+namespace RaceControl.DataAccess.Services.Implementations.SQLite
 {
     internal class SeriesService : ISeriesService
     {

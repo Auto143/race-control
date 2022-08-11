@@ -1,11 +1,10 @@
-﻿using RCDataAccess.Services.Interfaces;
-using RCDataAccess.Services.Implementations;
+﻿using RaceControl.DataAccess.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RCDataAccess.Services.Implementations.SQLite;
+using RaceControl.DataAccess.Services.Implementations.SQLite;
 
 namespace RCDataAccessIntegrationTests.ServiceTests
 {

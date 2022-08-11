@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RCDataAccess.Models
+namespace RaceControl.DataAccess.Models
 {
     public class Country
     {
