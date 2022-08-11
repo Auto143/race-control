@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RaceControl.ViewModels
+namespace RaceControl.Product.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

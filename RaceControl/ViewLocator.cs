@@ -1,9 +1,9 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using RaceControl.ViewModels;
+using RaceControl.Product.ViewModels;
 using System;
 
-namespace RaceControl
+namespace RaceControl.Product
 {
     public class ViewLocator : IDataTemplate
     {

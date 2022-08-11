@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl", "RaceControl\RaceControl.csproj", "{AC2A6626-59BF-4F2A-999D-733197F63217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl.Product", "RaceControl\RaceControl.Product.csproj", "{AC2A6626-59BF-4F2A-999D-733197F63217}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCLogic", "RCLogic\RCLogic.csproj", "{C7138DEB-4E98-4697-9E31-5E452DD94827}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCLogicUnitTests", "RCLogicUnitTests\RCLogicUnitTests.csproj", "{A7669F4C-C5AC-42D6-8CD5-590875241F83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCDataAccess", "RCDataAccess\RCDataAccess.csproj", "{DA494470-5643-4898-9976-5D200AE094C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCDataAccess", "RCDataAccess\RCDataAccess.csproj", "{DA494470-5643-4898-9976-5D200AE094C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RCDataAccessIntegrationTests", "RCDataAccessIntegrationTests\RCDataAccessIntegrationTests.csproj", "{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCDataAccessIntegrationTests", "RCDataAccessIntegrationTests\RCDataAccessIntegrationTests.csproj", "{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
