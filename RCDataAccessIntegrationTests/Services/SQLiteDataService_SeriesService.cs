@@ -13,7 +13,7 @@ namespace RCDataAccessIntegrationTests.Services
     public class SQLiteDataService_SeriesService
     {
         [Test]
-        public void WhenCheckExistsCalled_ReturnTrue_WhenSeriesWithNameFound()
+        public void CheckExistsCalled_IfSeriesWithNameFound_ReturnTrue()
         {
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
@@ -37,7 +37,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenCheckExistsCalled_ReturnFalse_WhenNoSeriesWithNameFound()
+        public void CheckExistsCalled_IfNoSeriesWithNameFound_ReturnFalse()
         {
             // Arrange
             (IDataService dataService, string testFolderPath) = createDataService();
@@ -57,7 +57,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenGetCalled_ReturnSeriesObjectFromDatabase_WhenSeriesWithNameFound()
+        public void GetCalled_IfSeriesWithNameFound_ReturnSeriesObjectFromDatabase()
         {
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
@@ -81,7 +81,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenGetCalled_ThrowKeyNotFoundException_WhenNoSeriesWithNameFound()
+        public void GetCalled_IfNoSeriesWithNameFound_ThrowKeyNotFoundException()
         {
             // Arrange
             (IDataService dataService, string testFolderPath) = createDataService();
@@ -101,7 +101,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenGetAllCalled_ReturnAllSeriesObjectFromDatabase_WhenSomeSeriesExist()
+        public void AllCalled_IfAnySeriesExists_ReturnAllSeriesObjectsFromDatabase()
         {
             // Arrange
             const string TEST_SERIES_NAME_ONE = "TestSeriesOne";
@@ -128,7 +128,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenGetAllCalled_ReturnEmptyList_WhenNoSeriesExist()
+        public void GetAllCalled_IfNoSeriesExists_ReturnEmptyList()
         {
             // Arrange
             (IDataService dataService, string testFolderPath) = createDataService();
@@ -148,7 +148,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenCreateNewCalled_SaveToDatabaseAndReturnSeriesObject_WhenNoSeriesWithNameAlreadyExists()
+        public void CreateNewCalled_IfNoSeriesWithNameExists_SaveToDatabaseAndReturnSeriesObject()
         {
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
@@ -173,7 +173,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenCreateNewCalled_ThrowArgumentException_WhenNoSeriesWithNameAlreadyExists()
+        public void CreateNewCalled_IfSeriesWithNameAlreadyExists_ThrowArgumentException()
         {
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
@@ -199,7 +199,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenUpdateCalled_UpdateSeriesInDatabase_WhenSeriesWithNameAlreadyExists()
+        public void UpdateCalled_WhenSeriesWithNameAlreadyExists_UpdateSeriesInDatabase()
         {
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
@@ -227,7 +227,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenUpdateCalled_Throw_WhenNoSeriesWithNameExists()
+        public void UpdateCalled_WhenNoSeriesWithNameExists_ThrowKeyNotFoundException()
         {
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
@@ -254,7 +254,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenDeleteCalled_RemoveSeriesFromDatabase_WhenSeriesWithNameFound()
+        public void DeleteCalled_WhenSeriesWithNameFound_RemoveSeriesFromDatabase()
         {
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
@@ -283,7 +283,7 @@ namespace RCDataAccessIntegrationTests.Services
         }
 
         [Test]
-        public void WhenDeleteCalled_ThrowKeyNotFoundException_WhenNoSeriesWithNameFound()
+        public void DeleteCalled_WhenNoSeriesWithNameFound_ThrowKeyNotFoundException()
         {
             // Arrange
             (IDataService dataService, string testFolderPath) = createDataService();
