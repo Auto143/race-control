@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl.Product", "Race
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl.Logic", "RCLogic\RaceControl.Logic.csproj", "{C7138DEB-4E98-4697-9E31-5E452DD94827}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCLogicUnitTests", "RCLogicUnitTests\RCLogicUnitTests.csproj", "{A7669F4C-C5AC-42D6-8CD5-590875241F83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl.Logic.UnitTests", "RCLogicUnitTests\RaceControl.Logic.UnitTests.csproj", "{A7669F4C-C5AC-42D6-8CD5-590875241F83}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl.DataAccess", "RCDataAccess\RaceControl.DataAccess.csproj", "{DA494470-5643-4898-9976-5D200AE094C3}"
 EndProject
