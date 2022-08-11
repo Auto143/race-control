@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RCDataAccessIntegrationTests.Services
+namespace RaceControl.DataAccess.IntegrationTests.Services
 {
     [TestFixture]
     public class SQLiteDataService_SeriesService

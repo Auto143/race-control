@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RaceControl.DataAccess.Services.Implementations.SQLite;
 
-namespace RCDataAccessIntegrationTests.ServiceTests
+namespace RaceControl.DataAccess.IntegrationTests.Services
 {
     [TestFixture]
     [NonParallelizable]
@@ -18,9 +18,9 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             // Arrange
             const string TEST_DB_NAME = "testdatabase";
 
-            string testFolderStructure = String.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
+            string testFolderStructure = string.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
             string testFolderPath = getTestDBFolderPath(testFolderStructure);
-            string databaseFilePath = Path.Join(testFolderPath, String.Format("{0}.db", TEST_DB_NAME));
+            string databaseFilePath = Path.Join(testFolderPath, string.Format("{0}.db", TEST_DB_NAME));
 
             DataService? dataService = null;
 
@@ -46,9 +46,9 @@ namespace RCDataAccessIntegrationTests.ServiceTests
             const string TEST_DB_NAME = "testdatabase";
             const int WAIT_TIME_BETWEEN_CHECKS = 1000;
 
-            string testFolderStructure = String.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
+            string testFolderStructure = string.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
             string testFolderPath = getTestDBFolderPath(testFolderStructure);
-            string databaseFilePath = Path.Join(testFolderPath, String.Format("{0}.db", TEST_DB_NAME));
+            string databaseFilePath = Path.Join(testFolderPath, string.Format("{0}.db", TEST_DB_NAME));
 
             DataService? dataService = null;
 
