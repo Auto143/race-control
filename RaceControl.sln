@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl.Product", "RaceControl\RaceControl.Product.csproj", "{AC2A6626-59BF-4F2A-999D-733197F63217}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCLogic", "RCLogic\RCLogic.csproj", "{C7138DEB-4E98-4697-9E31-5E452DD94827}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl.Logic", "RCLogic\RaceControl.Logic.csproj", "{C7138DEB-4E98-4697-9E31-5E452DD94827}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RCLogicUnitTests", "RCLogicUnitTests\RCLogicUnitTests.csproj", "{A7669F4C-C5AC-42D6-8CD5-590875241F83}"
 EndProject

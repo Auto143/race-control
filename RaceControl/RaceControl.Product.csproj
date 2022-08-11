@@ -30,6 +30,6 @@
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RCLogic\RCLogic.csproj" />
+    <ProjectReference Include="..\RCLogic\RaceControl.Logic.csproj" />
   </ItemGroup>
 </Project>
