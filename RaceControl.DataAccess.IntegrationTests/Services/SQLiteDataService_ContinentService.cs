@@ -101,7 +101,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services
         }
 
         [Test]
-        public void GetAllCalled_IfAnyContinentExists_ReturnAllContinentObjectsFromDatabase()
+        public void GetAllCalled_IfAnyContinentsExist_ReturnAllContinentObjectsFromDatabase()
         {
             // Arrange
             const string TEST_CONTINENT_CODE_ONE = "TestContinentCodeOne";
@@ -128,7 +128,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services
         }
 
         [Test]
-        public void GetAllCalled_IfNoContinentsExists_ReturnEmptyList()
+        public void GetAllCalled_IfNoContinentsExist_ReturnEmptyList()
         {
             // Arrange
             (IDataService dataService, string testFolderPath) = createDataService();
