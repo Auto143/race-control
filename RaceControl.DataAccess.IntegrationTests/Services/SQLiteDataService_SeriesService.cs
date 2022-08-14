@@ -101,7 +101,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services
         }
 
         [Test]
-        public void AllCalled_IfAnySeriesExists_ReturnAllSeriesObjectsFromDatabase()
+        public void GetAllCalled_IfAnySeriesExists_ReturnAllSeriesObjectsFromDatabase()
         {
             // Arrange
             const string TEST_SERIES_NAME_ONE = "TestSeriesOne";
