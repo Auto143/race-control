@@ -9,6 +9,8 @@ namespace RaceControl.DataAccess.Services.Interfaces
 {
     public interface IDataService
     {
+        public IContinentService Continent { get; }
+
         public IMeetService Meet { get; }
 
         public ISeriesService Series { get; }

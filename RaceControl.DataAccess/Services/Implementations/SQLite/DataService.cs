@@ -11,6 +11,8 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
 {
     public class DataService : IDataService
     {
+        public IContinentService Continent { get; }
+
         public IMeetService Meet { get; }
 
         public ISeriesService Series { get; }
@@ -22,6 +24,8 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             rcSQLiteContext = new RCSQLiteContext(dbName, appDBFolderStucture);
 
             rcSQLiteContext.Database.EnsureCreated();
+
+            Continent = new ContinentService(rcSQLiteContext);
 
             Series = new SeriesService(rcSQLiteContext);
         }
