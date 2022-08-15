@@ -227,7 +227,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services
         }
 
         [Test]
-        public void UpdateCalled_WhenNoSeriesWithNameExists_ThrowKeyNotFoundException()
+        public void UpdateCalled_WhenNoContinentWithCodeExists_ThrowKeyNotFoundException()
         {
             // Arrange
             const string TEST_CONTINENT_CODE = "TestContinentCode";
