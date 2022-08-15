@@ -17,7 +17,7 @@ namespace RaceControl.DataAccess.Services.Interfaces
 
         public List<Country> GetAllInContinent(string continentCode);
 
-        public Country CreateNew(string countryCode);
+        public Country CreateNew(string countryCode, string continentCode);
 
         public void Update(Country country);
 
