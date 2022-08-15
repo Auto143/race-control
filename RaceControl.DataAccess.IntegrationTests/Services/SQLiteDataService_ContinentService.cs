@@ -120,6 +120,8 @@ namespace RaceControl.DataAccess.IntegrationTests.Services
                 // Assert
                 Assert.That(returnedContinents[0] == testContinentOne);
                 Assert.That(returnedContinents[1] == testContinentTwo);
+
+                Assert.That(returnedContinents.Count == 2);
             }
             finally
             {
