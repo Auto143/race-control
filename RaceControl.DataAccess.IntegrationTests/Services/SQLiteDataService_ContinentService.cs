@@ -235,7 +235,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services
 
             (IDataService dataService, string testFolderPath) = createDataService();
 
-            Continent continent = new Continent();
+            var continent = new Continent();
             continent.ContinentCode = TEST_CONTINENT_CODE;
             continent.Name = TEST_NAME;
 
