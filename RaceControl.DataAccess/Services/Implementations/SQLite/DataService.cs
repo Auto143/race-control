@@ -13,6 +13,8 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
     {
         public IContinentService Continent { get; }
 
+        public ICountryService Country { get; }
+
         public IMeetService Meet { get; }
 
         public ISeriesService Series { get; }
@@ -26,6 +28,8 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             rcSQLiteContext.Database.EnsureCreated();
 
             Continent = new ContinentService(rcSQLiteContext);
+
+            Country = new CountryService(rcSQLiteContext);
 
             Series = new SeriesService(rcSQLiteContext);
         }

@@ -11,6 +11,8 @@ namespace RaceControl.DataAccess.Services.Interfaces
     {
         public IContinentService Continent { get; }
 
+        public ICountryService Country { get; }
+
         public IMeetService Meet { get; }
 
         public ISeriesService Series { get; }
