@@ -190,8 +190,6 @@ namespace RaceControl.DataAccess.IntegrationTests.Services
                 TestDelegate createNewDelegate = () => dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
 
                 // Assert
-                bool doesTestSeriesExist = dataService.Continent.CheckExists(TEST_CONTINENT_CODE);
-
                 Assert.Throws<ArgumentException>(createNewDelegate);
             }
             finally
