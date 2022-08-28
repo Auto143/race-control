@@ -13,29 +13,29 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
 
         public ISeriesService Series { get; }
 
-        internal RCSQLiteContext rcSQLiteContext { get; }
+        private RCSQLiteContext _dataContext { get; }
 
-        public DataService(string dbName, string appDBFolderStucture)
+        public DataService(string dbName, string appDBFolderStructure)
         {
-            rcSQLiteContext = new RCSQLiteContext(dbName, appDBFolderStucture);
+            _dataContext = new RCSQLiteContext(dbName, appDBFolderStructure);
 
-            rcSQLiteContext.Database.EnsureCreated();
+            _dataContext.Database.EnsureCreated();
 
-            Continent = new ContinentService(rcSQLiteContext);
+            Continent = new ContinentService(_dataContext);
 
-            Country = new CountryService(rcSQLiteContext);
+            Country = new CountryService(_dataContext);
 
-            Series = new SeriesService(rcSQLiteContext);
+            Series = new SeriesService(_dataContext);
         }
 
         public void DeleteSource()
         {
-            rcSQLiteContext.Database.EnsureDeleted();
+            _dataContext.Database.EnsureDeleted();
         }
 
         public void Dispose()
         {
-            rcSQLiteContext.Dispose();
+            _dataContext.Dispose();
         }
     }
 }
