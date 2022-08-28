@@ -13,9 +13,9 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_CONTINENT_CODE = "TestContinentCode";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
-            Continent continent = dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
+            dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
 
             try
             {
@@ -23,11 +23,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 bool doesExist = dataService.Continent.CheckExists(TEST_CONTINENT_CODE);
 
                 // Assert
-                Assert.IsTrue(doesExist);
+                Assert.That(doesExist, Is.True);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -35,7 +35,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void CheckExistsCalled_IfNoContinentWithCodeFound_ReturnFalse()
         {
             // Arrange
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
@@ -43,11 +43,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 bool doesExist = dataService.Continent.CheckExists(String.Empty);
 
                 // Assert
-                Assert.IsFalse(doesExist);
+                Assert.That(doesExist, Is.False);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -57,7 +57,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_CONTINENT_CODE = "TestContinentCode";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             Continent testContinent = dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
 
@@ -67,11 +67,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 Continent returnedContinent = dataService.Continent.Get(TEST_CONTINENT_CODE);
 
                 // Assert
-                Assert.That(testContinent == returnedContinent);
+                Assert.That(testContinent, Is.EqualTo(returnedContinent));
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -79,19 +79,19 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void GetCalled_IfNoContinentWithCodeFound_ThrowKeyNotFoundException()
         {
             // Arrange
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
                 // Act
-                TestDelegate getSeriesDelegate = () => dataService.Continent.Get(String.Empty);
+                void GetSeriesDelegate() => dataService.Continent.Get(String.Empty);
 
                 // Assert
-                Assert.Throws<KeyNotFoundException>(getSeriesDelegate);
+                Assert.Throws<KeyNotFoundException>(GetSeriesDelegate);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -102,7 +102,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             const string TEST_CONTINENT_CODE_ONE = "TestContinentCodeOne";
             const string TEST_CONTINENT_CODE_TWO = "TestContinentCodeTwo";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             Continent testContinentOne = dataService.Continent.CreateNew(TEST_CONTINENT_CODE_ONE);
             Continent testContinentTwo = dataService.Continent.CreateNew(TEST_CONTINENT_CODE_TWO);
@@ -111,16 +111,18 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             {
                 // Act
                 List<Continent> returnedContinents = dataService.Continent.GetAll();
-
+                
                 // Assert
-                Assert.That(returnedContinents[0] == testContinentOne);
-                Assert.That(returnedContinents[1] == testContinentTwo);
-
-                Assert.That(returnedContinents.Count == 2);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(returnedContinents[0], Is.EqualTo(testContinentOne));
+                    Assert.That(returnedContinents[1], Is.EqualTo(testContinentTwo));
+                    Assert.That(returnedContinents, Has.Count.EqualTo(2));
+                });
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -128,7 +130,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void GetAllCalled_IfNoContinentsExist_ReturnEmptyList()
         {
             // Arrange
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
@@ -136,11 +138,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 List<Continent> returnedContinents = dataService.Continent.GetAll();
 
                 // Assert
-                Assert.That(returnedContinents.Count == 0);
+                Assert.That(returnedContinents, Is.Empty);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -150,7 +152,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_CONTINENT_CODE = "TestContinentCode";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
@@ -159,13 +161,16 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
 
                 // Assert
                 bool doesTestContinentExist = dataService.Continent.CheckExists(TEST_CONTINENT_CODE);
-
-                Assert.IsTrue(doesTestContinentExist);
-                Assert.That(continent.ContinentCode == TEST_CONTINENT_CODE);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(doesTestContinentExist, Is.True);
+                    Assert.That(continent.ContinentCode, Is.EqualTo(TEST_CONTINENT_CODE));
+                });
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -175,21 +180,21 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_CONTINENT_CODE = "TestContinentCode";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
-            Continent continent = dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
+            dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
 
             try
             {
                 // Act
-                TestDelegate createNewDelegate = () => dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
+                void CreateNewDelegate() => dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
 
                 // Assert
-                Assert.Throws<ArgumentException>(createNewDelegate);
+                Assert.Throws<ArgumentException>(CreateNewDelegate);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -200,7 +205,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             const string TEST_CONTINENT_CODE = "TestContinentCode";
             const string TEST_NAME = "TestContinent";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             Continent continent = dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
             continent.Name = TEST_NAME;
@@ -213,11 +218,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 // Assert
                 Continent returnedContinent = dataService.Continent.Get(TEST_CONTINENT_CODE);
 
-                Assert.That(continent.Name == returnedContinent.Name);
+                Assert.That(continent.Name, Is.EqualTo(returnedContinent.Name));
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -228,23 +233,25 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             const string TEST_CONTINENT_CODE = "TestContinentCode";
             const string TEST_NAME = "TestContinent";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
-            var continent = new Continent();
-            continent.ContinentCode = TEST_CONTINENT_CODE;
-            continent.Name = TEST_NAME;
+            var continent = new Continent
+            {
+                ContinentCode = TEST_CONTINENT_CODE,
+                Name = TEST_NAME
+            };
 
             try
             {
                 // Act
-                TestDelegate updateDelegate = () => dataService.Continent.Update(continent);
+                void UpdateDelegate() => dataService.Continent.Update(continent);
 
                 // Assert
-                Assert.Throws<KeyNotFoundException>(updateDelegate);
+                Assert.Throws<KeyNotFoundException>(UpdateDelegate);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -254,9 +261,9 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_CONTINENT_CODE = "TestContinentCode";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
-            Continent testContinent = dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
+            dataService.Continent.CreateNew(TEST_CONTINENT_CODE);
 
             bool doesExistBefore = dataService.Continent.CheckExists(TEST_CONTINENT_CODE);
 
@@ -267,13 +274,16 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
 
                 // Assert
                 bool doesExistAfter = dataService.Continent.CheckExists(TEST_CONTINENT_CODE);
-
-                Assert.IsTrue(doesExistBefore);
-                Assert.IsFalse(doesExistAfter);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(doesExistBefore, Is.True);
+                    Assert.That(doesExistAfter, Is.False);
+                });
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -281,33 +291,33 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void DeleteCalled_WhenNoContinentWithCodeFound_ThrowKeyNotFoundException()
         {
             // Arrange
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
                 // Act
-                TestDelegate deleteSeriesDelegate = () => dataService.Continent.Delete(String.Empty);
+                void DeleteSeriesDelegate() => dataService.Continent.Delete(String.Empty);
 
                 // Assert
-                Assert.Throws<KeyNotFoundException>(deleteSeriesDelegate);
+                Assert.Throws<KeyNotFoundException>(DeleteSeriesDelegate);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
-        private (IDataService, string) createDataService()
+        private static (IDataService, string) CreateDataService()
         {
-            const string TEST_DB_NAME = "testdatabase";
+            const string TEST_DB_NAME = "TestDatabase";
 
-            string testFolderStructure = String.Format("RCDataAccessTests{0}", Guid.NewGuid());
-            string testFolderPath = getTestDBFolderPath(testFolderStructure);
+            string testFolderStructure = $"RCDataAccessTests{Guid.NewGuid()}";
+            string testFolderPath = GetTestDbFolderPath(testFolderStructure);
 
             return (new DataService(TEST_DB_NAME, testFolderStructure), testFolderPath);
         }
 
-        private void cleanUpDataService(IDataService dataService, string testFolderPath)
+        private static void CleanUpDataService(IDataService? dataService, string testFolderPath)
         {
             if (dataService != null)
             {
@@ -317,14 +327,14 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             }
         }
 
-        private string getTestDBFolderPath(string folderStructure)
+        private static string GetTestDbFolderPath(string folderStructure)
         {
             Environment.SpecialFolder appDataFolder = Environment.SpecialFolder.LocalApplicationData;
             string appDataFolderPath = Environment.GetFolderPath(appDataFolder);
 
-            string testDBFolderPath = Path.Join(appDataFolderPath, folderStructure);
+            string testDdFolderPath = Path.Join(appDataFolderPath, folderStructure);
 
-            return testDBFolderPath;
+            return testDdFolderPath;
         }
     }
 }
