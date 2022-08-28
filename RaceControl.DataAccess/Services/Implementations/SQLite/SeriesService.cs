@@ -7,7 +7,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
 {
     internal class SeriesService : ISeriesService
     {
-        private RCSQLiteContext _dataContext;
+        private readonly RCSQLiteContext _dataContext;
 
         internal SeriesService(RCSQLiteContext rcSQLiteContext)
         {
@@ -16,7 +16,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
 
         public bool CheckExists(string seriesName)
         {
-            if (_dataContext.Series.Where(s => s.SeriesName == seriesName).FirstOrDefault() == null)
+            if (_dataContext.Series.FirstOrDefault(s => s.SeriesName == seriesName) == null)
             {
                 return false;
             }
@@ -30,13 +30,13 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
         {
             try
             {
-                return _dataContext.Series.Where(s => s.SeriesName == seriesName).First();
+                return _dataContext.Series.First(s => s.SeriesName == seriesName);
             }
             catch (InvalidOperationException invalidOperationException)
             {
                 if (invalidOperationException.Message.ToLower().Equals("sequence contains no elements"))
                 {
-                    throw new KeyNotFoundException(String.Format("No series exists with key {0}", seriesName));
+                    throw new KeyNotFoundException($"No series exists with key {seriesName}");
                 }
                 else
                 {
@@ -54,8 +54,10 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
         {
             try
             {
-                Series newSeries = new Series();
-                newSeries.SeriesName = seriesName;
+                var newSeries = new Series
+                {
+                    SeriesName = seriesName
+                };
 
                 _dataContext.Series.Add(newSeries);
                 _dataContext.SaveChanges();
@@ -66,7 +68,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             {
                 if (invalidOperationException.Message.ToLower().Contains("cannot be tracked because another instance with the same key value"))
                 {
-                    throw new ArgumentException(String.Format("Series already exists with key {0}", seriesName));
+                    throw new ArgumentException($"Series already exists with key {seriesName}");
                 }
                 else
                 {
@@ -86,7 +88,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             {
                 if (dbUpdateConcurrencyException.Message.ToLower().Contains("the database operation was expected to affect"))
                 {
-                    throw new KeyNotFoundException(String.Format("No series exists with key {0}", series.SeriesName));
+                    throw new KeyNotFoundException($"No series exists with key {series.SeriesName}");
                 }
                 else
                 {
