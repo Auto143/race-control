@@ -64,7 +64,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 long afterLastFileWriteTime = File.GetLastWriteTime(databaseFilePath).Ticks;
 
                 // Assert
-                Assert.That(beforeLastFileWriteTime == afterLastFileWriteTime);
+                Assert.That(beforeLastFileWriteTime, Is.EqualTo(afterLastFileWriteTime));
             }
             finally
             {
