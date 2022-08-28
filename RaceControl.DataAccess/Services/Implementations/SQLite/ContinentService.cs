@@ -2,17 +2,12 @@
 using RaceControl.DataAccess.Contexts;
 using RaceControl.DataAccess.Models;
 using RaceControl.DataAccess.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RaceControl.DataAccess.Services.Implementations.SQLite
 {
     internal class ContinentService : IContinentService
     {
-        private RCSQLiteContext _dataContext;
+        private readonly RCSQLiteContext _dataContext;
 
         internal ContinentService(RCSQLiteContext rcSQLiteContext)
         {
@@ -21,7 +16,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
 
         public bool CheckExists(string continentCode)
         {
-            if (_dataContext.Continents.Where(c => c.ContinentCode == continentCode).FirstOrDefault() == null)
+            if (_dataContext.Continents.FirstOrDefault(c => c.ContinentCode == continentCode) == null)
             {
                 return false;
             }
@@ -35,13 +30,13 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
         {
             try
             {
-                return _dataContext.Continents.Where(c => c.ContinentCode == continentCode).First();
+                return _dataContext.Continents.First(c => c.ContinentCode == continentCode);
             }
             catch (InvalidOperationException invalidOperationException)
             {
                 if (invalidOperationException.Message.ToLower().Equals("sequence contains no elements"))
                 {
-                    throw new KeyNotFoundException(String.Format("No continent exists with code {0}", continentCode));
+                    throw new KeyNotFoundException($"No continent exists with code {continentCode}");
                 }
                 else
                 {
@@ -59,8 +54,10 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
         {
             try
             {
-                Continent newContinent = new Continent();
-                newContinent.ContinentCode = continentCode;
+                var newContinent = new Continent
+                {
+                    ContinentCode = continentCode
+                };
 
                 _dataContext.Continents.Add(newContinent);
                 _dataContext.SaveChanges();
@@ -71,7 +68,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             {
                 if (invalidOperationException.Message.ToLower().Contains("cannot be tracked because another instance with the same key value"))
                 {
-                    throw new ArgumentException(String.Format("Continent already exists with code {0}", continentCode));
+                    throw new ArgumentException($"Continent already exists with code {continentCode}");
                 }
                 else
                 {
@@ -91,7 +88,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             {
                 if (dbUpdateConcurrencyException.Message.ToLower().Contains("the database operation was expected to affect"))
                 {
-                    throw new KeyNotFoundException(String.Format("No continent exists with code {0}", continent.ContinentCode));
+                    throw new KeyNotFoundException($"No continent exists with code {continent.ContinentCode}");
                 }
                 else
                 {
