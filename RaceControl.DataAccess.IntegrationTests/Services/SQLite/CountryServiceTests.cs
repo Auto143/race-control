@@ -1,16 +1,11 @@
 ﻿using RaceControl.DataAccess.Models;
 using RaceControl.DataAccess.Services.Implementations.SQLite;
 using RaceControl.DataAccess.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RaceControl.DataAccess.IntegrationTests.Services
+namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
 {
     [TestFixture]
-    public class SQLiteDataService_CountryService
+    public class CountryServiceTests
     {
         [Test]
         public void CheckExistsCalled_IfCountryWithCodeFound_ReturnTrue()

@@ -1,15 +1,10 @@
 ﻿using RaceControl.DataAccess.Services.Implementations.SQLite;
 using RaceControl.DataAccess.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RaceControl.DataAccess.IntegrationTests.Services
+namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
 {
     [TestFixture]
-    public class SQLiteDataService_MeetService
+    public class MeetServiceTests
     {
         [Test]
         public void WhenGetCalled_ThrowKeyNotFoundException_WhenNoMeetWithIDFound()
