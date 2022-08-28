@@ -13,9 +13,9 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
-            Series series = dataService.Series.CreateNew(TEST_SERIES_NAME);
+            dataService.Series.CreateNew(TEST_SERIES_NAME);
 
             try
             {
@@ -23,11 +23,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 bool doesExist = dataService.Series.CheckExists(TEST_SERIES_NAME);
 
                 // Assert
-                Assert.IsTrue(doesExist);
+                Assert.That(doesExist, Is.True);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -35,7 +35,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void CheckExistsCalled_IfNoSeriesWithNameFound_ReturnFalse()
         {
             // Arrange
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
@@ -43,11 +43,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 bool doesExist = dataService.Series.CheckExists(String.Empty);
 
                 // Assert
-                Assert.IsFalse(doesExist);
+                Assert.That(doesExist, Is.False);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -57,7 +57,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             Series testSeries = dataService.Series.CreateNew(TEST_SERIES_NAME);
 
@@ -67,11 +67,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 Series returnedSeries = dataService.Series.Get(TEST_SERIES_NAME);
 
                 // Assert
-                Assert.That(testSeries == returnedSeries);
+                Assert.That(testSeries, Is.EqualTo(returnedSeries));
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -79,19 +79,19 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void GetCalled_IfNoSeriesWithNameFound_ThrowKeyNotFoundException()
         {
             // Arrange
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
                 // Act
-                TestDelegate getSeriesDelegate = () => dataService.Series.Get(String.Empty);
+                void GetSeriesDelegate() => dataService.Series.Get(String.Empty);
 
                 // Assert
-                Assert.Throws<KeyNotFoundException>(getSeriesDelegate);
+                Assert.Throws<KeyNotFoundException>(GetSeriesDelegate);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -102,7 +102,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             const string TEST_SERIES_NAME_ONE = "TestSeriesOne";
             const string TEST_SERIES_NAME_TWO = "TestSeriesTWO";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             Series testSeriesOne = dataService.Series.CreateNew(TEST_SERIES_NAME_ONE);
             Series testSeriesTwo = dataService.Series.CreateNew(TEST_SERIES_NAME_TWO);
@@ -111,14 +111,17 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             {
                 // Act
                 List<Series> returnedSeries = dataService.Series.GetAll();
-
+                
                 // Assert
-                Assert.That(returnedSeries[0] == testSeriesOne);
-                Assert.That(returnedSeries[1] == testSeriesTwo);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(returnedSeries[0], Is.EqualTo(testSeriesOne));
+                    Assert.That(returnedSeries[1], Is.EqualTo(testSeriesTwo));
+                });
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -126,7 +129,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void GetAllCalled_IfNoSeriesExists_ReturnEmptyList()
         {
             // Arrange
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
@@ -134,11 +137,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 List<Series> returnedSeries = dataService.Series.GetAll();
 
                 // Assert
-                Assert.That(returnedSeries.Count == 0);
+                Assert.That(returnedSeries, Is.Empty);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -148,7 +151,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
 
-            (IDataService dataService, string testFolderPath) = createDataService();           
+            (IDataService dataService, string testFolderPath) = CreateDataService();           
 
             try
             {
@@ -157,13 +160,16 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
 
                 // Assert
                 bool doesTestSeriesExist = dataService.Series.CheckExists(TEST_SERIES_NAME);
-
-                Assert.IsTrue(doesTestSeriesExist);
-                Assert.That(series.SeriesName == TEST_SERIES_NAME);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(doesTestSeriesExist, Is.True);
+                    Assert.That(series.SeriesName, Is.EqualTo(TEST_SERIES_NAME));
+                });
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -173,23 +179,21 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
             
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
-            Series series = dataService.Series.CreateNew(TEST_SERIES_NAME);
+            dataService.Series.CreateNew(TEST_SERIES_NAME);
 
             try
             {
                 // Act
-                TestDelegate createNewDelegate = () => dataService.Series.CreateNew(TEST_SERIES_NAME);
+                void CreateNewDelegate() => dataService.Series.CreateNew(TEST_SERIES_NAME);
 
                 // Assert
-                bool doesTestSeriesExist = dataService.Series.CheckExists(TEST_SERIES_NAME);
-
-                Assert.Throws<ArgumentException>(createNewDelegate);
+                Assert.Throws<ArgumentException>(CreateNewDelegate);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -200,7 +204,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             const string TEST_SERIES_NAME = "TestSeries";
             const string TEST_DESCRIPTION = "TestDescription";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             Series series = dataService.Series.CreateNew(TEST_SERIES_NAME);
             series.Description = TEST_DESCRIPTION;
@@ -213,11 +217,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 // Assert
                 Series returnedSeries = dataService.Series.Get(TEST_SERIES_NAME);
 
-                Assert.That(series.Description == returnedSeries.Description);
+                Assert.That(series.Description, Is.EqualTo(returnedSeries.Description));
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -228,23 +232,25 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             const string TEST_SERIES_NAME = "TestSeries";
             const string TEST_DESCRIPTION = "TestDescription";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
-            Series series = new Series();
-            series.SeriesName = TEST_SERIES_NAME;
-            series.Description = TEST_DESCRIPTION;
+            Series series = new Series
+            {
+                SeriesName = TEST_SERIES_NAME,
+                Description = TEST_DESCRIPTION
+            };
 
             try
             {
                 // Act
-                TestDelegate updateDelegate = () => dataService.Series.Update(series);
+                void UpdateDelegate() => dataService.Series.Update(series);
 
                 // Assert
-                Assert.Throws<KeyNotFoundException>(updateDelegate);
+                Assert.Throws<KeyNotFoundException>(UpdateDelegate);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -254,9 +260,9 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_SERIES_NAME = "TestSeries";
 
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
-            Series testSeries = dataService.Series.CreateNew(TEST_SERIES_NAME);
+            dataService.Series.CreateNew(TEST_SERIES_NAME);
             
             bool doesExistBefore = dataService.Series.CheckExists(TEST_SERIES_NAME);
 
@@ -267,13 +273,16 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
 
                 // Assert
                 bool doesExistAfter = dataService.Series.CheckExists(TEST_SERIES_NAME);
-
-                Assert.IsTrue(doesExistBefore);
-                Assert.IsFalse(doesExistAfter);
+                
+                Assert.Multiple(() =>
+                {
+                    Assert.That(doesExistBefore, Is.True);
+                    Assert.That(doesExistAfter, Is.False);
+                });
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -281,33 +290,33 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void DeleteCalled_WhenNoSeriesWithNameFound_ThrowKeyNotFoundException()
         {
             // Arrange
-            (IDataService dataService, string testFolderPath) = createDataService();
+            (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
                 // Act
-                TestDelegate deleteSeriesDelegate = () => dataService.Series.Delete(String.Empty);
+                void DeleteSeriesDelegate() => dataService.Series.Delete(String.Empty);
 
                 // Assert
-                Assert.Throws<KeyNotFoundException>(deleteSeriesDelegate);
+                Assert.Throws<KeyNotFoundException>(DeleteSeriesDelegate);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
-        private (IDataService, string) createDataService()
+        private static (IDataService, string) CreateDataService()
         {
-            const string TEST_DB_NAME = "testdatabase";
+            const string TEST_DB_NAME = "TestDatabase";
 
-            string testFolderStructure = String.Format("RCDataAccessTests{0}", Guid.NewGuid());
-            string testFolderPath = getTestDBFolderPath(testFolderStructure);
+            string testFolderStructure = $"RCDataAccessTests{Guid.NewGuid()}";
+            string testFolderPath = GetTestDbFolderPath(testFolderStructure);
 
             return (new DataService(TEST_DB_NAME, testFolderStructure), testFolderPath);
         }
 
-        private void cleanUpDataService(IDataService dataService, string testFolderPath)
+        private static void CleanUpDataService(IDataService? dataService, string testFolderPath)
         {
             if (dataService != null)
             {
@@ -317,14 +326,14 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             }
         }
 
-        private string getTestDBFolderPath(string folderStructure)
+        private static string GetTestDbFolderPath(string folderStructure)
         {
             Environment.SpecialFolder appDataFolder = Environment.SpecialFolder.LocalApplicationData;
             string appDataFolderPath = Environment.GetFolderPath(appDataFolder);
 
-            string testDBFolderPath = Path.Join(appDataFolderPath, folderStructure);
+            string testDbFolderPath = Path.Join(appDataFolderPath, folderStructure);
 
-            return testDBFolderPath;
+            return testDbFolderPath;
         }
     }
 }
