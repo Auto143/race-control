@@ -1,4 +1,5 @@
-﻿using RaceControl.DataAccess.Services.Implementations.SQLite;
+﻿using System.Globalization;
+using RaceControl.DataAccess.Services.Implementations.SQLite;
 using RaceControl.DataAccess.Services.Interfaces;
 
 namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
@@ -13,9 +14,10 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             // Arrange
             const string TEST_DB_NAME = "testdatabase";
 
-            string testFolderStructure = string.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
-            string testFolderPath = getTestDBFolderPath(testFolderStructure);
-            string databaseFilePath = Path.Join(testFolderPath, string.Format("{0}.db", TEST_DB_NAME));
+            string testFolderStructure = 
+                $"RCDataAccessTests{DateTime.Now.ToString(CultureInfo.CurrentCulture).Replace("/", "").Replace(":", "")}";
+            string testFolderPath = GetTestDbFolderPath(testFolderStructure);
+            string databaseFilePath = Path.Join(testFolderPath, $"{TEST_DB_NAME}.db");
 
             DataService? dataService = null;
 
@@ -26,11 +28,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
 
                 // Assert
                 bool doesDBFileExist = File.Exists(databaseFilePath);
-                Assert.IsTrue(doesDBFileExist);
+                Assert.That(doesDBFileExist, Is.True);
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
@@ -41,9 +43,10 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             const string TEST_DB_NAME = "testdatabase";
             const int WAIT_TIME_BETWEEN_CHECKS = 1000;
 
-            string testFolderStructure = string.Format("RCDataAccessTests{0}", DateTime.Now.ToString().Replace("/", "").Replace(":", ""));
-            string testFolderPath = getTestDBFolderPath(testFolderStructure);
-            string databaseFilePath = Path.Join(testFolderPath, string.Format("{0}.db", TEST_DB_NAME));
+            string testFolderStructure =
+                $"RCDataAccessTests{DateTime.Now.ToString(CultureInfo.CurrentCulture).Replace("/", "").Replace(":", "")}";
+            string testFolderPath = GetTestDbFolderPath(testFolderStructure);
+            string databaseFilePath = Path.Join(testFolderPath, $"{TEST_DB_NAME}.db");
 
             DataService? dataService = null;
 
@@ -65,11 +68,11 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             }
             finally
             {
-                cleanUpDataService(dataService, testFolderPath);
+                CleanUpDataService(dataService, testFolderPath);
             }
         }
 
-        private void cleanUpDataService(IDataService? dataService, string testFolderPath)
+        private static void CleanUpDataService(IDataService? dataService, string testFolderPath)
         {
             if (dataService != null)
             {
@@ -79,7 +82,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             }
         }
 
-        private string getTestDBFolderPath(string folderStructure)
+        private static string GetTestDbFolderPath(string folderStructure)
         {
             Environment.SpecialFolder appDataFolder = Environment.SpecialFolder.LocalApplicationData;
             string appDataFolderPath = Environment.GetFolderPath(appDataFolder);
