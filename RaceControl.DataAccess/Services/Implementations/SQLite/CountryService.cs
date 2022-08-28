@@ -12,7 +12,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
 {
     internal class CountryService : ICountryService
     {
-        private RCSQLiteContext _dataContext;
+        private readonly RCSQLiteContext _dataContext;
 
         internal CountryService(RCSQLiteContext rcSQLiteContext)
         {
@@ -21,27 +21,20 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
 
         public bool CheckExists(string countryCode)
         {
-            if (_dataContext.Countries.Where(c => c.CountryCode == countryCode).FirstOrDefault() == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return _dataContext.Countries.FirstOrDefault(c => c.CountryCode == countryCode) != null;
         }
 
         public Country Get(string countryCode)
         {
             try
             {
-                return _dataContext.Countries.Where(c => c.CountryCode == countryCode).First();
+                return _dataContext.Countries.First(c => c.CountryCode == countryCode);
             }
             catch (InvalidOperationException invalidOperationException)
             {
                 if (invalidOperationException.Message.ToLower().Equals("sequence contains no elements"))
                 {
-                    throw new KeyNotFoundException(String.Format("No country exists with code {0}", countryCode));
+                    throw new KeyNotFoundException($"No country exists with code {countryCode}");
                 }
                 else
                 {
@@ -64,9 +57,11 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
         {
             try
             {
-                Country newCountry = new Country();
-                newCountry.CountryCode = countryCode;
-                newCountry.ContinentCode = continentCode;
+                var newCountry = new Country
+                {
+                    CountryCode = countryCode,
+                    ContinentCode = continentCode
+                };
 
                 _dataContext.Countries.Add(newCountry);
                 _dataContext.SaveChanges();
@@ -77,7 +72,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             {
                 if (invalidOperationException.Message.ToLower().Contains("cannot be tracked because another instance with the same key value"))
                 {
-                    throw new ArgumentException(String.Format("Country already exists with code {0}", countryCode));
+                    throw new ArgumentException($"Country already exists with code {countryCode}");
                 }
                 else
                 {
@@ -88,7 +83,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             {
                 if (dbUpdateException.Message.ToLower().Contains("an error occurred while saving the entity changes"))
                 {
-                    throw new KeyNotFoundException(String.Format("No continent exists with code {0}", continentCode));
+                    throw new KeyNotFoundException($"No continent exists with code {continentCode}");
                 }
                 else
                 {
@@ -108,7 +103,7 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             {
                 if (dbUpdateConcurrencyException.Message.ToLower().Contains("the database operation was expected to affect"))
                 {
-                    throw new KeyNotFoundException(String.Format("No country exists with code {0}", country.CountryCode));
+                    throw new KeyNotFoundException($"No country exists with code {country.CountryCode}");
                 }
                 else
                 {
