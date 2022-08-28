@@ -408,7 +408,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             }
         }
 
-        private (IDataService, string) CreateDataService()
+        private static (IDataService, string) CreateDataService()
         {
             const string TEST_DB_NAME = "TestDatabase";
 
