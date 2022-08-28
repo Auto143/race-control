@@ -12,7 +12,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void OnInstantiation_CreateFileDatabase_IfDoesntExist()
         {
             // Arrange
-            const string TEST_DB_NAME = "testdatabase";
+            const string TEST_DB_NAME = "TestDatabase";
 
             string testFolderStructure = 
                 $"RCDataAccessTests{DateTime.Now.ToString(CultureInfo.CurrentCulture).Replace("/", "").Replace(":", "")}";
@@ -27,8 +27,8 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
                 dataService = new DataService(TEST_DB_NAME, testFolderStructure);
 
                 // Assert
-                bool doesDBFileExist = File.Exists(databaseFilePath);
-                Assert.That(doesDBFileExist, Is.True);
+                bool doesDatabaseFileExist = File.Exists(databaseFilePath);
+                Assert.That(doesDatabaseFileExist, Is.True);
             }
             finally
             {
@@ -40,7 +40,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void OnInstantiation_DontRecreateFileDatabase_IfAlreadyExists()
         {
             //Arrange
-            const string TEST_DB_NAME = "testdatabase";
+            const string TEST_DB_NAME = "TestDatabase";
             const int WAIT_TIME_BETWEEN_CHECKS = 1000;
 
             string testFolderStructure =
@@ -48,9 +48,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             string testFolderPath = GetTestDbFolderPath(testFolderStructure);
             string databaseFilePath = Path.Join(testFolderPath, $"{TEST_DB_NAME}.db");
 
-            DataService? dataService = null;
-
-            dataService = new DataService(TEST_DB_NAME, testFolderStructure);
+            var dataService = new DataService(TEST_DB_NAME, testFolderStructure);
             dataService.Dispose();
             dataService = null;
 
@@ -87,9 +85,9 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             Environment.SpecialFolder appDataFolder = Environment.SpecialFolder.LocalApplicationData;
             string appDataFolderPath = Environment.GetFolderPath(appDataFolder);
 
-            string testDBFolderPath = Path.Join(appDataFolderPath, folderStructure);
+            string testDatabaseFolderPath = Path.Join(appDataFolderPath, folderStructure);
 
-            return testDBFolderPath;
+            return testDatabaseFolderPath;
         }
     }
 }
