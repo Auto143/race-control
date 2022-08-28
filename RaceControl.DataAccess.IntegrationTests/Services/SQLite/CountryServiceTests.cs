@@ -433,9 +433,9 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             Environment.SpecialFolder appDataFolder = Environment.SpecialFolder.LocalApplicationData;
             string appDataFolderPath = Environment.GetFolderPath(appDataFolder);
 
-            string testDdFolderPath = Path.Join(appDataFolderPath, folderStructure);
+            string testDatabaseFolderPath = Path.Join(appDataFolderPath, folderStructure);
 
-            return testDdFolderPath;
+            return testDatabaseFolderPath;
         }
     }
 }
