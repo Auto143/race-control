@@ -10,6 +10,8 @@ namespace RaceControl.DataAccess.Services.Interfaces
         public IMeetService Meet { get; }
 
         public ISeriesService Series { get; }
+        
+        public ITrackService Track { get; }
 
         public void DeleteSource();
 
