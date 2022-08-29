@@ -92,10 +92,10 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             try
             {
                 // Act
-                void GetSeriesDelegate() => dataService.Track.Get(String.Empty);
+                void GetDelegate() => dataService.Track.Get(String.Empty);
 
                 // Assert
-                Assert.Throws<KeyNotFoundException>(GetSeriesDelegate);
+                Assert.Throws<KeyNotFoundException>(GetDelegate);
             }
             finally
             {
@@ -419,10 +419,10 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             try
             {
                 // Act
-                void DeleteSeriesDelegate() => dataService.Track.Delete(String.Empty);
+                void DeleteDelegate() => dataService.Track.Delete(String.Empty);
 
                 // Assert
-                Assert.Throws<KeyNotFoundException>(DeleteSeriesDelegate);
+                Assert.Throws<KeyNotFoundException>(DeleteDelegate);
             }
             finally
             {
