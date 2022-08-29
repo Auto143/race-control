@@ -234,7 +234,7 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
 
             (IDataService dataService, string testFolderPath) = CreateDataService();
 
-            Series series = new Series
+            var series = new Series
             {
                 SeriesName = TEST_SERIES_NAME,
                 Description = TEST_DESCRIPTION
