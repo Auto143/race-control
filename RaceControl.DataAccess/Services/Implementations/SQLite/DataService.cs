@@ -12,6 +12,8 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
         public IMeetService Meet { get; }
 
         public ISeriesService Series { get; }
+        
+        public ITrackService Track { get;  }
 
         private RCSQLiteContext _dataContext { get; }
 
@@ -26,6 +28,8 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
             Country = new CountryService(_dataContext);
 
             Series = new SeriesService(_dataContext);
+
+            Track = new TrackService(_dataContext);
         }
 
         public void DeleteSource()
