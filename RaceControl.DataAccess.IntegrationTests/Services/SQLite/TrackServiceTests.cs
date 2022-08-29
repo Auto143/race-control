@@ -388,15 +388,15 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
             dataService.Country.CreateNew(TEST_COUNTRY_CODE, TEST_CONTINENT_CODE);
             dataService.Track.CreateNew(TEST_TRACK_NAME, TEST_COUNTRY_CODE);
 
-            bool doesExistBefore = dataService.Country.CheckExists(TEST_COUNTRY_CODE);
+            bool doesExistBefore = dataService.Track.CheckExists(TEST_TRACK_NAME);
 
             try
             {
                 // Act
-                dataService.Country.Delete(TEST_COUNTRY_CODE);
+                dataService.Track.Delete(TEST_TRACK_NAME);
 
                 // Assert
-                bool doesExistAfter = dataService.Country.CheckExists(TEST_COUNTRY_CODE);
+                bool doesExistAfter = dataService.Track.CheckExists(TEST_TRACK_NAME);
                 
                 Assert.Multiple(() =>
                 {
