@@ -196,14 +196,14 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void GetAllInContinentCalled_IfNoCountriesInContinentExist_ReturnEmptyList()
         {
             // Arrange
-            const string TEST_CONTINENT_CODE_ONE = "TestContinentCodeOne";
+            const string TEST_CONTINENT_CODE = "TestContinentCode";
 
             (IDataService dataService, string testFolderPath) = CreateDataService();
 
             try
             {
                 // Act
-                List<Country> returnedCountries = dataService.Country.GetAllInContinent(TEST_CONTINENT_CODE_ONE);
+                List<Country> returnedCountries = dataService.Country.GetAllInContinent(TEST_CONTINENT_CODE);
 
                 // Assert
                 Assert.That(returnedCountries, Is.Empty);
