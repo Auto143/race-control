@@ -10,7 +10,7 @@ namespace RaceControl.DataAccess.Models
     {
         public Guid RaceMeetID { get; set; }
 
-        public string Name { get; set; } = String.Empty;
+        public string Description { get; set; } = String.Empty;
 
         public string TrackName { get; set; } = String.Empty;
         public Track? Track { get; set; }
