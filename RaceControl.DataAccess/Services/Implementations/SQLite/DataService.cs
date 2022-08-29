@@ -27,6 +27,8 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
 
             Country = new CountryService(_dataContext);
 
+            RaceMeet = new RaceMeetService(_dataContext);
+
             Series = new SeriesService(_dataContext);
 
             Track = new TrackService(_dataContext);
