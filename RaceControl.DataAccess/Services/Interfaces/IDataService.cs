@@ -7,7 +7,7 @@ namespace RaceControl.DataAccess.Services.Interfaces
 
         public ICountryService Country { get; }
 
-        public IMeetService Meet { get; }
+        public IRaceMeetService RaceMeet { get; }
 
         public ISeriesService Series { get; }
         

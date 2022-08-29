@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RaceControl.DataAccess.Models
 {
-    public class Meet
+    public class RaceMeet
     {
-        public Guid MeetID { get; set; }
+        public Guid RaceMeetID { get; set; }
 
         public string Name { get; set; } = String.Empty;
 

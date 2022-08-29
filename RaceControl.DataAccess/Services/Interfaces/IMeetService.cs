@@ -2,20 +2,20 @@
 
 namespace RaceControl.DataAccess.Services.Interfaces
 {
-    public interface IMeetService
+    public interface IRaceMeetService
     {
-        public bool CheckExists(Guid meetID);
+        public bool CheckExists(Guid raceMeetID);
 
-        public Meet Get(Guid meetID);
+        public RaceMeet Get(Guid raceMeetID);
 
-        public List<Meet> GetAll();
+        public List<RaceMeet> GetAll();
 
-        public List<Meet> GetAllAtTrack(string trackName);
+        public List<RaceMeet> GetAllAtTrack(string trackName);
 
-        public Meet CreateNew();
+        public RaceMeet CreateNew();
 
-        public void Update(Meet meet);
+        public void Update(RaceMeet raceMeet);
 
-        public void Delete(Guid meetID);
+        public void Delete(Guid raceMeetID);
     }
 }

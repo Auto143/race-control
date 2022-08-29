@@ -12,7 +12,7 @@ namespace RaceControl.DataAccess.Contexts
     {
         public DbSet<Continent> Continents => Set<Continent>();
         public DbSet<Country> Countries => Set<Country>();
-        public DbSet<Meet> Meets => Set<Meet>();
+        public DbSet<RaceMeet> RaceMeets => Set<RaceMeet>();
         public DbSet<Series> Series => Set<Series>();
         public DbSet<Track> Tracks => Set<Track>();
 
@@ -66,14 +66,14 @@ namespace RaceControl.DataAccess.Contexts
 
         private void configureMeetsTable(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Meet>().HasKey(m => m.MeetID);
+            modelBuilder.Entity<RaceMeet>().HasKey(m => m.RaceMeetID);
 
-            modelBuilder.Entity<Meet>()
+            modelBuilder.Entity<RaceMeet>()
                 .HasOne(m => m.Track)
                 .WithMany()
                 .HasForeignKey(m => m.TrackName);
             
-            modelBuilder.Entity<Meet>()
+            modelBuilder.Entity<RaceMeet>()
                 .HasOne(m => m.Series)
                 .WithMany()
                 .HasForeignKey(m => m.SeriesName);
