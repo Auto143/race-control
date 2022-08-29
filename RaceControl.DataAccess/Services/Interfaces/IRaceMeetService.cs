@@ -12,7 +12,7 @@ namespace RaceControl.DataAccess.Services.Interfaces
 
         public List<RaceMeet> GetAllAtTrack(string trackName);
 
-        public RaceMeet CreateNew();
+        public RaceMeet CreateNew(string trackName, string seriesName);
 
         public void Update(RaceMeet raceMeet);
 
