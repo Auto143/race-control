@@ -59,7 +59,6 @@ namespace RaceControl.DataAccess.IntegrationTests.Services.SQLite
         public void GetCalled_IfTrackWithNameFound_ReturnTrackObjectFromDatabase()
         {
             // Arrange
-            // Arrange
             const string TEST_TRACK_NAME = "TestTrack";
             const string TEST_COUNTRY_CODE = "CountryCode";
             const string TEST_CONTINENT_CODE = "ContinentCode";
