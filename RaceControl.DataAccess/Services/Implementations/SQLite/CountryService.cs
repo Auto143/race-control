@@ -16,7 +16,14 @@ namespace RaceControl.DataAccess.Services.Implementations.SQLite
 
         public bool CheckExists(string countryCode)
         {
-            return _dataContext.Countries.FirstOrDefault(c => c.CountryCode == countryCode) != null;
+            if (_dataContext.Countries.FirstOrDefault(c => c.CountryCode == countryCode) == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public Country Get(string countryCode)
