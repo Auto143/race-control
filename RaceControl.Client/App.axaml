@@ -1,7 +1,7 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:RaceControl.Product"
-             x:Class="RaceControl.Product.App">
+             xmlns:local="using:RaceControl.Client"
+             x:Class="RaceControl.Client.App">
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>

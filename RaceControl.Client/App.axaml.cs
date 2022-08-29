@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using RaceControl.Product.ViewModels;
-using RaceControl.Product.Views;
+using RaceControl.Client.ViewModels;
+using RaceControl.Client.Views;
 
-namespace RaceControl.Product
+namespace RaceControl.Client
 {
     public partial class App : Application
     {

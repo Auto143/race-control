@@ -3,7 +3,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ReactiveUI;
 using System;
 
-namespace RaceControl.Product
+namespace RaceControl.Client
 {
     internal class Program
     {

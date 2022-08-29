@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace RaceControl.Product.Views
+namespace RaceControl.Client.Views
 {
     public partial class MainWindow : Window
     {
