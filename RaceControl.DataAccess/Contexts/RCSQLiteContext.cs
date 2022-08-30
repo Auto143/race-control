@@ -11,7 +11,7 @@ namespace RaceControl.DataAccess.Contexts
         public DbSet<Series> Series => Set<Series>();
         public DbSet<Track> Tracks => Set<Track>();
 
-        private string _dbPath; 
+        private readonly string _dbPath; 
 
         internal RCSQLiteContext(string dbName, string appDBFolderStucture)
         {
