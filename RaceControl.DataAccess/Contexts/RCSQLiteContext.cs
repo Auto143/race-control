@@ -59,7 +59,7 @@ namespace RaceControl.DataAccess.Contexts
             modelBuilder.Entity<Country>().HasKey(c => c.CountryCode);
 
             modelBuilder.Entity<Country>()
-                .HasOne(c => c.Continant)
+                .HasOne(c => c.Continent)
                 .WithMany()
                 .HasForeignKey(c => c.ContinentCode);
         }
