@@ -33,23 +33,23 @@ namespace RaceControl.DataAccess.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            configureContinentsTable(modelBuilder);
+            ConfigureContinentsTable(modelBuilder);
 
-            configureContriesTable(modelBuilder);
+            ConfigureCountriesTable(modelBuilder);
 
-            configureMeetsTable(modelBuilder);
+            ConfigureMeetsTable(modelBuilder);
 
-            configureSeriesTable(modelBuilder);
+            ConfigureSeriesTable(modelBuilder);
 
-            configureTracksTable(modelBuilder);
+            ConfigureTracksTable(modelBuilder);
         }
 
-        private void configureContinentsTable(ModelBuilder modelBuilder)
+        private static void ConfigureContinentsTable(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Continent>().HasKey(c => c.ContinentCode);
         }
 
-        private void configureContriesTable(ModelBuilder modelBuilder)
+        private static void ConfigureCountriesTable(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Country>().HasKey(c => c.CountryCode);
 
@@ -59,7 +59,7 @@ namespace RaceControl.DataAccess.Contexts
                 .HasForeignKey(c => c.ContinentCode);
         }
 
-        private void configureMeetsTable(ModelBuilder modelBuilder)
+        private static void ConfigureMeetsTable(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<RaceMeet>().HasKey(m => m.RaceMeetID);
 
@@ -74,12 +74,12 @@ namespace RaceControl.DataAccess.Contexts
                 .HasForeignKey(m => m.SeriesName);
         }
 
-        private void configureSeriesTable(ModelBuilder modelBuilder)
+        private static void ConfigureSeriesTable(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Series>().HasKey(s => s.SeriesName);
         }
 
-        private void configureTracksTable(ModelBuilder modelBuilder)
+        private static void ConfigureTracksTable(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Track>().HasKey(t => t.TrackName);
 
