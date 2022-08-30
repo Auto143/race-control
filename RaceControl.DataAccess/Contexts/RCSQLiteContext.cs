@@ -13,19 +13,19 @@ namespace RaceControl.DataAccess.Contexts
 
         private readonly string _dbPath; 
 
-        internal RCSQLiteContext(string dbName, string appDBFolderStucture)
+        internal RCSQLiteContext(string dbName, string appDBFolderStructure)
         {
             Environment.SpecialFolder appDataFolder = Environment.SpecialFolder.LocalApplicationData;
             string appDataFolderPath = Environment.GetFolderPath(appDataFolder);
 
-            string dbFolderPath = Path.Join(appDataFolderPath, appDBFolderStucture);
+            string dbFolderPath = Path.Join(appDataFolderPath, appDBFolderStructure);
 
             if (!Directory.Exists(dbFolderPath))
             {
                 Directory.CreateDirectory(dbFolderPath);
             }
 
-            _dbPath = Path.Join(dbFolderPath, String.Format("{0}.db", dbName));
+            _dbPath = Path.Join(dbFolderPath, $"{dbName}.db");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
