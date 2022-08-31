@@ -7,11 +7,16 @@
         x:Class="RaceControl.Client.Views.MainWindow"
         ExtendClientAreaToDecorationsHint="True"
         Icon="/Assets/Icons/avalonia-logo.ico"
-        Title="RaceControl">
+        Title="RaceControl"
+        Classes="w1">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    
+    <Window.Styles>
+        <StyleInclude Source="/Assets/Styles/DarkMode.axaml"/>
+    </Window.Styles>
 
     <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
