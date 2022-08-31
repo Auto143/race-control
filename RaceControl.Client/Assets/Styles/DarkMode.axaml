@@ -1,0 +1,10 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Styles.Resources>
+        <SolidColorBrush x:Key="PrimaryDark" Color="#1a191f"/>
+        <SolidColorBrush x:Key="SecondaryDark" Color="#26252c"/>
+    </Styles.Resources>
+    <Style Selector="Window.w1">
+        <Setter Property="Background" Value="{StaticResource PrimaryDark}"/>
+    </Style>
+</Styles>
