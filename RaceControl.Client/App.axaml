@@ -9,4 +9,8 @@
     <Application.Styles>
         <FluentTheme Mode="Dark"/>
     </Application.Styles>
+    
+    <Application.Resources>
+        <FontFamily x:Key="IconFont">/Assets/Fonts/FA/FontAwesome6Free-Solid-900.otf#Font Awesome 6 Free</FontFamily>
+    </Application.Resources>
 </Application>
