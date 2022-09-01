@@ -33,4 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RaceControl.Logic\RaceControl.Logic.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Fonts\FA" />
+  </ItemGroup>
 </Project>
