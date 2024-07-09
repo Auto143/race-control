@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl.DataAccess", "R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaceControl.DataAccess.IntegrationTests", "RaceControl.DataAccess.IntegrationTests\RaceControl.DataAccess.IntegrationTests.csproj", "{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceControl.Client", "RaceControl.Client\RaceControl.Client.csproj", "{A841DD08-6056-4537-9ED4-37F50E0B6D33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAD3ACC8-7929-440A-AA21-5E08CA3D7FE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A841DD08-6056-4537-9ED4-37F50E0B6D33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A841DD08-6056-4537-9ED4-37F50E0B6D33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A841DD08-6056-4537-9ED4-37F50E0B6D33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A841DD08-6056-4537-9ED4-37F50E0B6D33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
